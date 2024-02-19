@@ -9,15 +9,16 @@
     "moduleDetection": "force",
     "isolatedModules": true,
 
+    "jsx": "react-jsx",
+
     /* Strictness */
     "strict": true,
     "noUncheckedIndexedAccess": true,
 
-    /* If transpiling with TypeScript: */
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
-    "outDir": "dist",
-    "sourceMap": true,
+    /* If NOT transpiling with TypeScript: */
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "noEmit": true,
 
     /* If your code runs in the DOM: */
     "lib": ["es2022", "dom", "dom.iterable"]
