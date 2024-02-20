@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .layering {
+  --depth-is-odd: 1; // start at 1
+  // 1 = odd, 0 = even
+
+  --layer-color: /*somehow do --depth-is-odd % 2 === 0
+                    ? some color : another color*/
+/* background-color: var(--layer-color);
+
+  & > * {
+    --depth-is-odd: calc(
+      1 - var(--depth-is-odd)
+    ); // inverts; 1 - 1 = 0, 1 - 0 = 1
+  }
+} */
+
+.layering {
+  container-name: layering;
+  --depth-is-odd: true;
+  display: flex;
+}
+
+@container layering style(--depth-is-odd: true) {
+  .layering {
+    background-color: var(--gray-00);
+    --depth-is-odd: false;
+  }
+}
+
+@container layering style(--depth-is-odd: false) {
+  .layering {
+    background-color: var(--gray-03);
+    --depth-is-odd: true;
+  }
+}
+
+.dark {
+  .layering {
+    container-name: layering;
+    --depth: 0;
+  }
+
+  @container layering style(--depth: 0) {
+    .layering {
+      background-color: var(--gray-00);
+      --depth: 1;
+    }
+  }
+
+  @container layering style(--depth: 1) {
+    .layering {
+      background-color: var(--gray-03);
+      --depth: 2;
+    }
+  }
+
+  @container layering style(--depth: 2) {
+    .layering {
+      background-color: var(--gray-06);
+      --depth: 3;
+    }
+  }
+  /* keep going if you want more colors*/
+}
